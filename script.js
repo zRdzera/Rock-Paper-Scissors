@@ -53,7 +53,6 @@ function game(){
     for (let i = 0; i < 5; i ++){
         const playerSelection = prompt("Choose between rock, paper and scissors: ", "Paper");
         const computerSelection = computerPlay();
-
         result = playRound(playerSelection, computerSelection);
 
         if (result === 1){
