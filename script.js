@@ -40,22 +40,13 @@ function playRound(playerSelection, computerSelection){
         number = 2;
     }
 
-    console.log(string);
-
-    return number;
+    return string;
 }
 
 let btn = document.querySelectorAll('.btn');
+let showResult = document.querySelector('#result');
 
 Array.from(btn).forEach(element => {
-    element.addEventListener('click', playRound);
+    element.addEventListener('click', 
+    () => showResult.textContent = playRound(element.textContent, computerPlay()));
 });
-
-function game(){
-    let playerWon = 0;
-    let computerWon = 0;
-    let result;
-
-}
-
-game();
