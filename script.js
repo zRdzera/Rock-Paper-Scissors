@@ -10,7 +10,6 @@ inFiveRounds.setAttribute('id', 'show-winner');
 let playerWins = 0;
 let computerWins = 0;
 let draw = 0;
-let roundCount = 0;
 
 // FUNCTION FOR THE COMPUTER CHOICE
 function computerPlay(){
@@ -44,7 +43,6 @@ function playRound(playerSelection, computerSelection){
         roundWinner = 2;
     }
 
-    roundCount++;
     showRoundResult.textContent = showRoundWinner;
     return roundWinner;
 }
