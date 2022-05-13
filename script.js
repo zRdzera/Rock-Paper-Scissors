@@ -45,33 +45,17 @@ function playRound(playerSelection, computerSelection){
     return number;
 }
 
+let btn = document.querySelectorAll('.btn');
+
+Array.from(btn).forEach(element => {
+    element.addEventListener('click', playRound);
+});
+
 function game(){
     let playerWon = 0;
     let computerWon = 0;
     let result;
 
-    for (let i = 0; i < 5; i ++){
-        const playerSelection = prompt("Choose between rock, paper and scissors: ", "Paper");
-        const computerSelection = computerPlay();
-
-        result = playRound(playerSelection, computerSelection);
-
-        if (result === 1){
-            playerWon++;
-        } else if (result === 2){
-            computerWon++;
-        } 
-    }
-
-    if (playerWon > computerWon){
-        console.log("The winner in 5 rounds is the User!");
-    }
-    else if (computerWon > playerWon){
-        console.log("The winner in 5 rounds is the Computer!");
-    }
-    else {
-        console.log("There's no winner!");
-    }
 }
 
 game();
