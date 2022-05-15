@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(60, 60, 60);
+    font-family: 'Koulen', cursive, 'Sans-serif';
+    text-align: center;
+    color: white;
+}
+
+header {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-size: 28px;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 50px 0 66px 0;
+}
+
+h2 {
+    margin-top: 50px;
+    font-size: 30px;
+}
+
+.btn {
+    outline: none;
+    border: none;
+    width: 150px;
+    height: 150px;
+    padding: 0;
+    border-radius: 100px;
+    overflow: hidden;
+    box-shadow: 0 16px rgb(102, 102, 102);
+}
+
+.btn:active {
+    box-shadow: 0 8px rgb(102, 102, 102);
+    transform: translateY(8px);
+}
+
+#result {
+    margin: 50px auto;
+    padding: 15px 15px;
+	border: 5px solid white;
+	border-radius: 20px;
+    width: 30%;
+    font-size: 30px;	
+    text-align: center;
+}
+
+#result h2 {
+    color: aqua;
+    margin: 20px 0;
+}
+
+#result #score {
+    display: flex;
+    justify-content: space-around;
+}
+
+#play-again {
+    border-radius: 15px;
+    padding: 15px;
+    outline: none;
+    border: none;
+    box-shadow: 0 8px rgb(102, 102, 102);
+    text-transform: uppercase;
+    font-family: 'Rubik', sans-serif;
+    background-color: aqua;
+    color: rgb(102, 102, 102);
+    display: none;
+}
+
+#play-again:active {
+    box-shadow: 0 4px rgb(102, 102, 102);
+    transform: translateY(4px);
+}

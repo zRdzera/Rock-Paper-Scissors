@@ -6,19 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, paper and scissors</title>
 
+    <link rel="stylesheet" href="style.css">
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 
     <script src="./script.js" defer></script>
 </head> 
 <body>
-    <button class="btn">Rock</button>
-    <button class="btn">Paper</button>
-    <button class="btn">Scissors</button>
 
-    <div id="result">
-        <p id="round-result"></p>
-        <p id="computer-count">Computer rounds win count: 0</p>
-        <p id="player-count">Player rounds win count: 0</p>
-        <p id="draw-count">Draw count: 0</p>
-    </div>
+    <header>
+        <h1>ROCK, PAPER AND SCISSORS</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Best of five rounds</h2> 
+    
+            <div id="buttons"> 
+                <button class="btn" value="rock"><img src="./img/rock.png" alt="Rock icon"></button>
+                <button class="btn" value="paper"><img src="./img/paper.png" alt="Paper icon"></button>
+                <button class="btn" value="scissors"><img src="./img/scissors.png" alt="Scissor icon"></button>
+            </div>
+        </section>
+    
+        <section>
+            <div id="result">
+                <p id="round-result"></p>
+        
+                <h2>Current score</h2>
+        
+                <div id="score">
+                    <p id="computer-count">Comp: 0</p>
+                    <p id="player-count">You: 0</p>
+                </div>
+        
+                <button id="play-again">Play again</button>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

@@ -1,15 +1,16 @@
-let showRoundResult = document.querySelector('#round-result');
+let showResult = document.querySelector('#round-result');
 let pComputer = document.querySelector('#computer-count');
 let pPlayer = document.querySelector('#player-count');
-let pDraw = document.getElementById('draw-count');
 let btn = document.querySelectorAll('.btn');
-let container = document.getElementById('result');
-let inFiveRounds = document.createElement('p'); // USED TO SHOW WHO'S THE WINNER AFTER 5 ROUNDS
-inFiveRounds.setAttribute('id', 'show-winner');
+let playAgain = document.querySelector('#play-again');
 
 let playerWins = 0;
 let computerWins = 0;
-let draw = 0;
+
+// WHEN ONE OF THE BUTTONS IS CLICKED THE executeFunc() IS TRIGGERED
+Array.from(btn).forEach(element => {
+    element.addEventListener('click', () => executePlayRound(element));
+});
 
 // FUNCTION FOR THE COMPUTER CHOICE
 function computerPlay(){
@@ -20,14 +21,13 @@ function computerPlay(){
 
 // FUNCTION THAT PLAYS THE ROUND BETWEEN THE USER AND THE COMPUTER
 function playRound(playerSelection, computerSelection){
-    let showRoundWinner;
+    let showWinner;
     let roundWinner;
 
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
 
     if (playerSelection === computerSelection){
-        showRoundWinner = "Draw!";
-        roundWinner = 0;
+        showWinner = "Tie!";
     }
     else if 
     (
@@ -35,51 +35,79 @@ function playRound(playerSelection, computerSelection){
         playerSelection === "Scissors" && computerSelection === "Paper" ||
         playerSelection === "Rock" && computerSelection === "Scissors"
     ){
-        showRoundWinner = "User won the round!";
+        showWinner = `You won the round! ${playerSelection} beats ${computerSelection}`;
         roundWinner = 1;
     }
     else {
-        showRoundWinner = "Computer won the round!";
+        showWinner = `Computer won the round! ${computerSelection} beats ${playerSelection}`;
         roundWinner = 2;
     }
 
-    showRoundResult.textContent = showRoundWinner;
+    showResult.textContent = showWinner;
     return roundWinner;
 }
 
-function executeFunc(parameter){
+function executePlayRound(parameter){
     let roundResult;
 
-    roundResult = playRound(parameter.textContent, computerPlay());
+    roundResult = playRound(parameter.value, computerPlay());
     switch (roundResult) {
         case 1:
             playerWins++;
-            pPlayer.textContent = "Player rounds win count: " + playerWins;
+            pPlayer.textContent = "YOU: " + playerWins;
             break;
         
         case 2:
             computerWins++;
-            pComputer.textContent = "Computer rounds win count: " + computerWins;
+            pComputer.textContent = "COMP: " + computerWins;
             break;
 
         default:
-            draw++;
-            pDraw.textContent = "Draw count: " + draw;
             break;
     }
 
-    if(playerWins == 5 && inFiveRounds.textContent.length == 0){
-        inFiveRounds.textContent = "The winner in 5 rounds is the Player!";
-        container.appendChild(inFiveRounds);
-    }
+    if(computerWins == 5 || playerWins == 5){
+        if(playerWins == 5){
+            showResult.textContent = "YOU WON!";
+            disableEvent(true);
+        } 
+        else {
+            showResult.textContent = "YOU LOSE!";
+            disableEvent(true);
+        }
 
-    if(computerWins == 5 && inFiveRounds.textContent.length == 0){
-        inFiveRounds.textContent = "The winner in 5 rounds is the Computer!";
-        container.appendChild(inFiveRounds);
+        playAgain.style.cssText = "display: inline-block";
+        playAgain.addEventListener('click', () => 
+        {
+            disableEvent(false);
+            restartGame();
+        });
     }
 }
 
-// WHEN ONE OF THE BUTTONS IS CLICKED THE executeFunc() IS TRIGGERED
-Array.from(btn).forEach(element => {
-    element.addEventListener('click', () => executeFunc(element));
-});
+// FUNCTION TO DISABLE ALL BUTTONS AFTER 5 ROUNDS
+function disableEvent(parameter){
+    if (parameter == true){
+        Array.from(btn).forEach(element => {
+            element.disabled = true;
+        });
+    }
+    else {
+        Array.from(btn).forEach(element => {
+            element.disabled = false;
+        });
+    }
+}
+
+// FUNCTION TO RESET ALL PARAMETERS AND RESTART THE GAME
+function restartGame(){
+    showResult.textContent = '';
+
+    computerWins = 0;
+    pComputer.textContent = "Comp: 0";
+
+    playerWins = 0;
+    pPlayer.textContent = "You: 0";
+
+    playAgain.style.cssText = "display: none";
+}
